@@ -137,7 +137,7 @@
     }
   </style>
 <body>
-<h1>萬年曆</h1>
+<h1 style="text-align:center">萬年曆</h1>
 <?php
 /*請在這裹撰寫你的萬年曆程式碼*/  
   date_default_timezone_set("Asia/Taipei");//調整時區
@@ -169,7 +169,7 @@ $week=['星期日','星期一','星期二','星期三','星期四','星期五','
   // echo "<pre>";
   // print_r($datedays);
   // echo "</pre>";
-  echo "<p style='font-size:45px;font-family:標楷體;color:red'>今天是 $today ".$week[date('w')]."</p>";//輸出今天日期星期
+  echo "<p style='text-align:center;font-size:45px;font-family:標楷體;color:red'>今天是 $today ".$week[date('w')]."</p>";//輸出今天日期星期
   
 ?>
 <video autoplay muted loop id="myVideo">
