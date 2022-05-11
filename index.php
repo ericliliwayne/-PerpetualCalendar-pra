@@ -10,18 +10,56 @@
     .table{
       display: flex;
       flex-wrap: wrap;
-      width: 820px;
+      width: 830px;
       height: 820px;
       /* border: 1px solid cadetblue; */
       justify-content:space-between;
       align-content:center;
       margin: auto;
-      box-shadow: 10px 10px 10px black;
+      /* box-shadow: inset 10px 10px 10px black; */
+      box-shadow:  10px 10px 10px black;
       backdrop-filter: blur(5px);
       padding: 50PX;
-      /* background-color: lightgreen; */
+      border-radius: 10% 10%;
+      background-color: rgba(245, 245, 245, 0.1);
+    }
+    .table:hover{/*動態背景顏色*/ 
+    background: linear-gradient(236deg, #ff0000, #ff8000, #ffff00, #00ff00, #0000ff, #7f007f);
+    background-size: 1200% 1200%;
+    opacity: 0.7;
+    -webkit-animation: AnimationName 30s ease infinite;
+    -moz-animation: AnimationName 30s ease infinite;
+    -o-animation: AnimationName 30s ease infinite;
+    animation: AnimationName 30s ease infinite;
+}
+
+    @-webkit-keyframes AnimationName {
+        0%{background-position:84% 0%}
+        50%{background-position:17% 100%}
+        100%{background-position:84% 0%}
+    }
+    @-moz-keyframes AnimationName {
+        0%{background-position:84% 0%}
+        50%{background-position:17% 100%}
+        100%{background-position:84% 0%}
+    }
+    @-o-keyframes AnimationName {
+        0%{background-position:84% 0%}
+        50%{background-position:17% 100%}
+        100%{background-position:84% 0%}
+    }
+    @keyframes AnimationName {
+        0%{background-position:84% 0%}
+        50%{background-position:17% 100%}
+        100%{background-position:84% 0%}
+    }
+    .table:hover{
+      /* background-color: lightblue; */
+      box-shadow: 20px 20px 10px black;
+      backdrop-filter: blur(5px);
     }
     .table>.weekend,.workday{
+      font-family:'Times New Roman', Times, serif;
       min-width: 100px;
       min-height: 100px;
       max-width: 100%;
@@ -30,12 +68,14 @@
       margin: 2px auto;
       opacity: 0.7;
       box-shadow: 5px 5px 10px black;
+      border-radius: 25% 0 25% 0;
     }
     .weekend:hover,.workday:hover {/*將區塊做水平翻轉*/
     animation: 0.4s linear 0s alternate none 1 featuresicon;
     -webkit-animation: 0.4s linear 0s alternate none 1 featuresicon;
-    color: #4183C4;
+    color: gold;
     text-shadow: 3px 3px 5px black;
+    border-radius: 0 25% 0 25%;
     }
     @keyframes featuresicon { 
       50% {
@@ -54,11 +94,11 @@
     }
     }
     .header0{
-      font-family: '標楷體';
-      font-size: 30px;
+      font-family:monospace;
+      font-size: 40px;
       text-align: center;
       font-weight: bolder;
-      line-height: 170%;
+      line-height: 140%;
       background-color: black;
       color: white;
       width: 100%;
@@ -66,9 +106,10 @@
       border-bottom: 1px solid white;
       margin: 0 auto;
       box-shadow: 5px 5px 10px black;
+      
     }
     .header{
-      font-family: '標楷體';
+      font-family:'Microsoft JhengHei';
       font-size: 50px;
       font-weight: bolder;
       text-align: center;
@@ -82,9 +123,10 @@
       border-right: 1px solid white;
       margin: 0 auto;
       box-shadow: 5px 5px 10px black;
+      margin-bottom: 5px;
     }
     .header2{
-      font-family: '標楷體';
+      font-family: 'Microsoft JhengHei';
       font-size: 50px;
       text-align: center;
       font-weight: bolder;
@@ -96,6 +138,7 @@
       border-bottom: 1px solid white;
       margin: 0 auto;
       box-shadow: 5px 5px 10px black;
+      margin-bottom: 5px;
     }
 
     .workday{
@@ -117,7 +160,7 @@
       background: -webkit-linear-gradient(to top, #FFBFBF, #C2C2FF, #00FF00);
       background-clip: text;
       -webkit-background-clip: text;
-      /* background-color: lightgray; */
+      /* background-color:; */
       color: transparent;
       font-size: 80px;
       font-weight: bolder;
@@ -169,7 +212,7 @@ $week=['星期日','星期一','星期二','星期三','星期四','星期五','
   // echo "<pre>";
   // print_r($datedays);
   // echo "</pre>";
-  echo "<p style='text-align:center;font-size:45px;font-family:標楷體;color:red'>今天是 $today ".$week[date('w')]."</p>";//輸出今天日期星期
+  echo "<p style='text-align:center;font-size:45px;font-family:Microsoft JhengHei;color:red;text-shadow:3px 3px 5px black;font-weight:bold'>今天是 $today ".$week[date('w')]."</p>";//輸出今天日期星期
   
 ?>
 <video autoplay muted loop id="myVideo">
