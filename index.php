@@ -23,36 +23,6 @@
       border-radius: 10% 10%;
       background-color: rgba(245, 245, 245, 0.1);
     }
-    .table:hover{/*動態背景顏色*/ 
-    background: linear-gradient(236deg, #ff0000, #ff8000, #ffff00, #00ff00, #0000ff, #7f007f);
-    background-size: 1200% 1200%;
-    opacity: 0.7;
-    -webkit-animation: AnimationName 30s ease infinite;
-    -moz-animation: AnimationName 30s ease infinite;
-    -o-animation: AnimationName 30s ease infinite;
-    animation: AnimationName 30s ease infinite;
-}
-
-    @-webkit-keyframes AnimationName {
-        0%{background-position:84% 0%}
-        50%{background-position:17% 100%}
-        100%{background-position:84% 0%}
-    }
-    @-moz-keyframes AnimationName {
-        0%{background-position:84% 0%}
-        50%{background-position:17% 100%}
-        100%{background-position:84% 0%}
-    }
-    @-o-keyframes AnimationName {
-        0%{background-position:84% 0%}
-        50%{background-position:17% 100%}
-        100%{background-position:84% 0%}
-    }
-    @keyframes AnimationName {
-        0%{background-position:84% 0%}
-        50%{background-position:17% 100%}
-        100%{background-position:84% 0%}
-    }
     .table:hover{
       /* background-color: lightblue; */
       box-shadow: 20px 20px 10px black;
@@ -68,7 +38,7 @@
       margin: 2px auto;
       opacity: 0.7;
       box-shadow: 5px 5px 10px black;
-      border-radius: 25% 0 25% 0;
+      border-radius: 50% 50%;
     }
     .weekend:hover,.workday:hover {/*將區塊做水平翻轉*/
     animation: 0.4s linear 0s alternate none 1 featuresicon;
@@ -145,12 +115,14 @@
       color: black;
       font-size: 80px;
       text-align: center;
+      /* font-weight: normal; */
       background-color: lightgray;
       border: 1px solid lightgray;
     }
     .weekend{
       color: red;
       font-size: 80px;
+      /* font-weight: normal; */
       text-align: center;
       background-color: lightpink;
       border: 1px solid lightpink;
@@ -169,16 +141,36 @@
     }
     #myVideo{
       width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
+      height: 100vh;
+      object-fit: cover;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: -1;
+    }
+    section{
+      display: flex;
+      justify-content: center;
+      color: red;
+      font-size: 40px;
+      font-weight: bold;
+      margin: auto;
+      font-family:'標楷體';
     }
   </style>
+  <script language="JavaScript">
+    function ShowTime(){
+    　var NowDate=new Date();
+    　var h=NowDate.getHours();
+    　var m=NowDate.getMinutes();
+    　var s=NowDate.getSeconds();　
+    　document.getElementById('showbox').innerHTML = h+'時'+m+'分'+s+'秒';
+    　setTimeout('ShowTime()',1000);
+    }
+</script>
+
 <body>
 <h1 style="text-align:center">萬年曆</h1>
 <?php
@@ -208,12 +200,21 @@ $week=['星期日','星期一','星期二','星期三','星期四','星期五','
   for($i=0;$i<(6-$lastweekday);$i++){
     $datedays[]="";
   }
-  
+  ?>
+  <section>
+  <?php
   // echo "<pre>";
   // print_r($datedays);
   // echo "</pre>";
-  echo "<p style='text-align:center;font-size:45px;font-family:Microsoft JhengHei;color:red;text-shadow:3px 3px 5px black;font-weight:bold'>今天是 $today ".$week[date('w')]."</p>";//輸出今天日期星期
-  
+  echo "<p>今天是 $today ".$week[date('w')]."&nbsp;,</p>";//輸出今天日期星期
+?>
+<body onload="ShowTime()" ><!-- 現在時間: -->
+    <p>&nbsp;現在時間&nbsp;:&nbsp;</p>
+    <div id="showbox" ></div>
+  </section>  
+</body>
+<?php
+
 ?>
 <video autoplay muted loop id="myVideo">
   <source src="./resource/video.mp4" type="video/mp4">
