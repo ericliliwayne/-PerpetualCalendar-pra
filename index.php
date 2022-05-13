@@ -7,11 +7,33 @@
       margin: 0;
     }
     
+    
     nav{
       display: flex;
       justify-content: space-around;
       align-content: center;
       margin: 10px auto;
+    }
+    .bar{
+      width: 100%;
+      display: flex;
+
+    }
+    .bar>.a1{
+      width: 10%;
+      box-shadow: 5px 5px 10px black;
+      background-color: black;
+      border-bottom: 1px solid white;
+      height: 100%;
+      font-size: 40px;
+    }
+    .a1>a{
+      text-decoration:none ;
+      color: white;
+      line-height: 140%;
+    }
+    .a1>a:hover{
+      color: lightcoral;
     }
     .table0{
       width: 830px;
@@ -21,7 +43,13 @@
       background-color: rgba(245, 245, 245, 0.1);
       box-shadow:  10px 10px 10px black;
       border-radius: 10% 10%;
-      margin-left: 75px;
+      /* margin-left: 75px; */
+      margin: auto;
+    }
+    .table0:hover{
+      /* background-color: lightblue; */
+      box-shadow: 20px 20px 10px black;
+      backdrop-filter: blur(5px);
     }
     .table{
       display: flex;
@@ -87,13 +115,14 @@
       line-height: 140%;
       background-color: black;
       color: white;
-      width: 100%;
-      height: calc(100% / 14);
+      width: 80%;
+      height: 100%;
       border-bottom: 1px solid white;
       margin: 0 auto;
       box-shadow: 5px 5px 10px black;
       
     }
+    
     .header{
       font-family:'Microsoft JhengHei';
       font-size: 50px;
@@ -155,7 +184,7 @@
       text-align: center;
       border: none;
     }
-    #myVideo{
+    #myVideo{ /*將影片設成背景影片 */
       width: 100vw;
       height: 100vh;
       object-fit: cover;
@@ -175,6 +204,42 @@
       margin: auto;
       font-family:'標楷體';
     }
+    form{
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      /* border: 1px solid black; */
+      /* align-items: center; */
+    }
+    .text{
+      text-align: center;
+      font-size: 30px;
+    }
+    .text>#year,#month{
+      width: 200px;
+      text-align: center;
+      font-size: 30px;
+    }
+    .btn{
+      display: flex;
+      margin: 20px auto;
+      justify-content: space-between;
+      font-size: 30px;
+      
+    }
+    P>#now{
+      color:black;
+      text-decoration: none;
+      font-size: 31px;
+      border: 1px solid black;
+      padding: 5px;
+      background-color: lightgray;
+    }
+    p>#submit,#reset,#now:hover{
+      color: blue;
+      font-size: 40px;
+    }
   </style>
   <script language="JavaScript">
     function ShowTime(){
@@ -192,15 +257,58 @@
 <?php
 /*請在這裹撰寫你的萬年曆程式碼*/  
   date_default_timezone_set("Asia/Taipei");//調整時區
-  $month=date('n');
-  $year=date('Y');
-  $firstday=date('Y-').$month.('-1');
-  $firstweekday=date('w',strtotime($firstday));
-  $today=date("Y-n-j");
-  $monthdays=date('t',strtotime($firstday));
-  $lastday=date('Y-').$month.('-').$monthdays;
-  $lastweekday=date('w',strtotime($lastday));
-  $day2=date('j');
+  if(isset($_GET['month'])){
+    $month=$_GET['month'];
+    $year=$_GET['year'];
+    switch($_GET['month']){
+      case 1:
+          $prevMonth=12;
+          $prevYear=$year-1;
+          $nextMonth=$month+1;
+          $nextYear=$year;
+      break;
+      case 12:
+          $prevMonth=$month-1;
+          $prevYear=$year;
+          $nextMonth=1;
+          $nextYear=$year+1;
+      break;
+      default:
+          $prevMonth=$month-1;
+          $prevYear=$year;
+          $nextMonth=$month+1;
+          $nextYear=$year;
+  }
+}else{
+    $month=date("n");
+    $year=date("Y");
+    switch($month){
+    case 1:
+        $prevMonth=12;
+        $prevYear=$year-1;
+        $nextMonth=$month+1;
+        $nextYear=$year;
+    break;
+    case 12:
+        $prevMonth=$month-1;
+        $prevYear=$year;
+        $nextMonth=1;
+        $nextYear=$year+1;
+    break;
+    default:
+        $prevMonth=$month-1;
+        $prevYear=$year;
+        $nextMonth=$month+1;
+        $nextYear=$year;
+}
+}
+  $firstday=$year."-".$month.("-1");
+  $firstweekday=date("w",strtotime($firstday));
+  $monthdays=date("t",strtotime($firstday));
+  $lastday=$year."-".$month.("-").$monthdays;
+  $lastweekday=date("w",strtotime($lastday));
+  $today=date("Y-m-d");
+  $day2=date("j");
   $datedays=[];
 
 $week=['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
@@ -265,7 +373,7 @@ $words=["你不一定要很厲害，才能開始；但你要開始，才能很�
         "Learn to walk before you run.","Constant dropping wears the stone.","Experience is the mother of wisdom.","Every man is his own worst enemy.","From small beginnings comes great things.",
         "All things in their being are good for something.","Failure is the mother of success.","Never underestimate your power to change yourself！"];
 $num=rand(0,104);
-echo "<P style='text-align:center;font-family:Microsoft JhengHei;color:darkgreen;font-size:25px;font-weight:bold;'>每日一句: ".$words[$num]."</p>";
+echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:25px;font-weight:bold;'>每日一句: ".$words[$num]."</marquee>";
 ?>
 <video autoplay muted loop id="myVideo">
   <source src="./resource/video.mp4" type="video/mp4">
@@ -274,11 +382,53 @@ echo "<P style='text-align:center;font-family:Microsoft JhengHei;color:darkgreen
 <div class="table0">
 <P style="font-size: 30px;color:chocolate;text-align:center;font-weight:bold">氣象資訊</P>
 <iframe width="730" height="450" src="https://embed.windy.com/embed2.html?lat=23.140&lon=121.641&detailLat=24.939&detailLon=121.542&width=730&height=450&zoom=6&level=surface&overlay=clouds&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=true&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
+<form action="index.php" method="get">
+  <h1 style="color:red;text-align:center; font-size:50px;margin-top:20px;">請輸入年份和月分</h1>
+  <?php
+   $error="";
+  if(!is_numeric($year) || !is_numeric($month)){
+    $error="輸入格式錯誤，請重新輸入!";
+    echo "<h3 style='color:yellow;text-align:center'>".$error."</h3>";
+  }
+  ?>
+  <div class="text">
+    年份: <input type="text" name="year" style="font-size: 30px;width:200px;" value="1993">
+    月分: <select name="month" id="" style="font-size: 30px;">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+  </div>
+  
+  <div class="btn">
+    <p style="margin: 30px"><input type="submit" value="送出查詢" style="font-size: 30px;" id="submit"></p>
+    <p style="margin: 30px;font-size: 30px;"><a href='index.php?year=<?=$year=date('Y');?>&month=<?=$month=date('n');?>' id="now">當前月分</a></p>
+    <p style="margin: 30px"><input type="reset" value="清空資料" style="font-size: 30px;" id="reset"></p>
+  </div>
+</form>
+  
 </div>
 <section class="table">
-  <?php
-  echo "<div class='header0'>$year 年 ".$month." 月份日曆</div>";
-  ?>
+  <div class="bar">
+    <p class="a1"><a href="index.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">《《</a></p>
+<?php
+    if(empty($_GET['year']) || empty($_GET['month'])){
+      echo "<p class='header0'>".$year=date("Y")." 年 ".$month=date("n")." 月份日曆</p>";
+    }else{
+      echo "<p class='header0'>".$_GET['year']." 年 ".$_GET['month']." 月份日曆</p>";
+    }
+?>      
+    <p class="a1"><a href="index.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">》》</a> </p> 
+</div>
   <div class="header2">日</div>
   <div class="header">一</div>
   <div class="header">二</div>
@@ -288,22 +438,23 @@ echo "<P style='text-align:center;font-family:Microsoft JhengHei;color:darkgreen
   <div class="header2">六</div>
   
 <?php
-  foreach($datedays as $k => $day){
-    $hol=($k%7==0 || $k%7==6)?'weekend':'workday';//判定假日與非假日套用CSS
-    if(!empty($day)){
-        $dayFormat=date("j",strtotime($day));
-        if($dayFormat == $day2){
-          echo "<div class='today {$hol}'>{$dayFormat}</div>";
-        }else{
-          echo "<div class='{$hol}'>{$dayFormat}</div>";
-        }
-        
-    }else{
-        echo "<div class='{$hol}'></div>";
-
-    }
-    
-}
+foreach($datedays as $k => $day){
+       $hol=($k%7==0 || $k%7==6)?'weekend':'workday';//判定假日與非假日套用CSS
+       
+       if(!empty($day)){
+           $dayFormat=date("j",strtotime($day));
+           if($day == $today){
+              echo "<div class='today {$hol}'>{$dayFormat}</div>";
+           }else{
+              echo "<div class='{$hol}'>{$dayFormat}</div>";
+           }
+              
+       }else{
+           echo "<div class='{$hol}' style='opacity: 0.3;'></div>";
+  
+       }
+   }
+   ;
 
 ?>
 
