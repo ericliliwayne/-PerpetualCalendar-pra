@@ -74,10 +74,10 @@
     }
     .table>.weekend,.workday{
       font-family:'Times New Roman', Times, serif;
-      min-width: 100px;
-      min-height: 100px;
-      max-width: 100%;
-      max-height: 100%;
+      flex-basis: calc(100% / 7.5);
+      /* height: 100px; */
+      /* max-width: 100%; */
+      /* max-height: 100%; */
       /* border: 1px solid black; */
       margin: 2px auto;
       opacity: 0.7;
@@ -204,6 +204,10 @@
       margin: auto;
       font-family:'標楷體';
     }
+    .showtime{
+      display: flex;
+      justify-content: center;
+    }
     form{
       height: 250px;
       display: flex;
@@ -239,6 +243,66 @@
     p>#submit,#reset,#now:hover{
       color: blue;
       font-size: 40px;
+    }
+    @media (min-width:577px) and (max-width:1705px){/*RWD平板尺寸 */
+      nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 20px auto;
+      }
+      .table{
+        margin-top: 20px;
+      }
+      section{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      color: red;
+      font-size: 40px;
+      font-weight: bold;
+      margin: 1px auto;
+      font-family:'標楷體';
+      text-align: center;
+    }
+    .showtime{
+      display: flex;
+      justify-content: center;
+    }
+    .table{
+      flex-direction: row;
+    }
+    }
+    @media (max-width:576px){/*RWD手機尺寸*/
+      nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 10px auto;
+      }
+      .table{
+        margin-top: 20px;
+      }
+      section{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      color: red;
+      font-size: 40px;
+      font-weight: bold;
+      margin: 1px auto;
+      font-family:'標楷體';
+      text-align: center;
+    }
+    .showtime{
+      display: flex;
+      justify-content: center;
+    }
+    .table{
+      flex-direction: row;
+    }
     }
   </style>
   <script language="JavaScript">
@@ -330,11 +394,13 @@ $week=['星期日','星期一','星期二','星期三','星期四','星期五','
   // echo "<pre>";
   // print_r($datedays);
   // echo "</pre>";
-  echo "<p>今天是 $today ".$week[date('w')]."&nbsp;,</p>";//輸出今天日期星期
+  echo "<p>今天是 $today ".$week[date('w')]."</p>";//輸出今天日期星期
 ?>
-<body onload="ShowTime()" ><!-- 現在時間 -->
-    <p>&nbsp;現在時間&nbsp;:&nbsp;</p>
+<div class="showtime">
+  <body onload="ShowTime()" ><!-- 現在時間 -->
+    <p class="titletop2">&nbsp;現在時間&nbsp;:&nbsp;</p>
     <div id="showbox" ></div>
+</div>
   </section>  
 </body>
 <?php
