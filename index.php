@@ -8,34 +8,34 @@
     }
     
     
-    nav{
+    nav{ /*兩大區塊排版 */
       display: flex;
       justify-content: space-around;
       align-content: center;
       margin: 10px auto;
     }
-    .bar{
+    .bar{ /*上下月之區塊*/
       width: 100%;
       display: flex;
-
     }
-    .bar>.a1{
-      width: 10%;
+    .bar>.a1{/*上下月區塊調色*/ 
+      width: 15%;
       box-shadow: 5px 5px 10px black;
       background-color: black;
       border-bottom: 1px solid white;
       height: 100%;
       font-size: 40px;
     }
-    .a1>a{
+    .a1>a{/*上下月文字CSS修改 */
       text-decoration:none ;
       color: white;
       line-height: 140%;
     }
     .a1>a:hover{
-      color: lightcoral;
+      color:lime;
+      font-weight: bold;
     }
-    .table0{
+    .table0{ /*左邊大區塊 */
       width: 830px;
       height: 820px;
       backdrop-filter: blur(5px);
@@ -51,7 +51,7 @@
       box-shadow: 20px 20px 10px black;
       backdrop-filter: blur(5px);
     }
-    .table{
+    .table{/*右邊月曆大區塊 */
       display: flex;
       flex-wrap: wrap;
       width: 830px;
@@ -72,7 +72,7 @@
       box-shadow: 20px 20px 10px black;
       backdrop-filter: blur(5px);
     }
-    .table>.weekend,.workday{
+    .table>.weekend,.workday{/*平日/假日區塊調整 */
       font-family:'Times New Roman', Times, serif;
       flex-basis: calc(100% / 7.5);
       /* height: 100px; */
@@ -83,6 +83,7 @@
       opacity: 0.7;
       box-shadow: 5px 5px 10px black;
       border-radius: 50% 50%;
+      margin-bottom: 10px;
     }
     .weekend:hover,.workday:hover {/*將區塊做水平翻轉*/
     animation: 0.4s linear 0s alternate none 1 featuresicon;
@@ -107,7 +108,7 @@
         -webkit-transform: scaleX(1);
     }
     }
-    .header0{
+    .header0{/*月曆標題欄 */
       font-family:monospace;
       font-size: 40px;
       text-align: center;
@@ -115,7 +116,7 @@
       line-height: 140%;
       background-color: black;
       color: white;
-      width: 80%;
+      width: 70%;
       height: 100%;
       border-bottom: 1px solid white;
       margin: 0 auto;
@@ -123,7 +124,7 @@
       
     }
     
-    .header{
+    .header{/*平日欄位欄*/
       font-family:'Microsoft JhengHei';
       font-size: 50px;
       font-weight: bolder;
@@ -140,7 +141,7 @@
       box-shadow: 5px 5px 10px black;
       margin-bottom: 5px;
     }
-    .header2{
+    .header2{/*假日欄位欄 */
       font-family: 'Microsoft JhengHei';
       font-size: 50px;
       text-align: center;
@@ -156,7 +157,7 @@
       margin-bottom: 5px;
     }
 
-    .workday{
+    .workday{/*平日區塊 */
       color: black;
       font-size: 80px;
       text-align: center;
@@ -164,7 +165,7 @@
       background-color: lightgray;
       border: 1px solid lightgray;
     }
-    .weekend{
+    .weekend{/*假日區塊 */
       color: red;
       font-size: 80px;
       /* font-weight: normal; */
@@ -172,7 +173,7 @@
       background-color: lightpink;
       border: 1px solid lightpink;
     }
-    .today{
+    .today{/*今日日期標出來 */
       background: linear-gradient(to top, #FFBFBF, #C2C2FF, #00FF00);
       background: -webkit-linear-gradient(to top, #FFBFBF, #C2C2FF, #00FF00);
       background-clip: text;
@@ -195,7 +196,7 @@
       bottom: 0;
       z-index: -1;
     }
-    section{
+    section{/*月曆區塊修改 */
       display: flex;
       justify-content: center;
       color: red;
@@ -204,11 +205,11 @@
       margin: auto;
       font-family:'標楷體';
     }
-    .showtime{
+    .showtime{/*實時時間修改 */
       display: flex;
       justify-content: center;
     }
-    form{
+    form{/*查詢區修改 */
       height: 250px;
       display: flex;
       flex-direction: column;
@@ -219,6 +220,7 @@
     .text{
       text-align: center;
       font-size: 30px;
+      color:aqua;
     }
     .text>#year,#month{
       width: 200px;
@@ -232,7 +234,7 @@
       font-size: 30px;
       
     }
-    P>#now{
+    #now{
       color:black;
       text-decoration: none;
       font-size: 31px;
@@ -240,9 +242,15 @@
       padding: 5px;
       background-color: lightgray;
     }
-    p>#submit,#reset,#now:hover{
+    #submit #reset{
+      color: black;
+      font-size: 30px;
+      background-color: lightgray;
+    }
+    #submit,#reset,#now:hover{
       color: blue;
       font-size: 40px;
+      background-color: lightsteelblue;
     }
     @media (min-width:577px) and (max-width:1705px){/*RWD平板尺寸 */
       nav{
@@ -269,6 +277,9 @@
     .showtime{
       display: flex;
       justify-content: center;
+    }
+    #showtime>#titletop2,#showbox{
+      color:darkviolet;
     }
     .table{
       flex-direction: row;
@@ -300,6 +311,9 @@
       display: flex;
       justify-content: center;
     }
+    #showtime>#titletop2,#showbox{
+      color: darkslateblue;
+    }
     .table{
       flex-direction: row;
     }
@@ -315,7 +329,6 @@
     　setTimeout('ShowTime()',1000);
     }
 </script>
-
 <body>
 <!-- <h1 style="text-align:center">萬年曆</h1> -->
 <?php
@@ -324,29 +337,11 @@
   if(isset($_GET['month'])){
     $month=$_GET['month'];
     $year=$_GET['year'];
-    switch($_GET['month']){
-      case 1:
-          $prevMonth=12;
-          $prevYear=$year-1;
-          $nextMonth=$month+1;
-          $nextYear=$year;
-      break;
-      case 12:
-          $prevMonth=$month-1;
-          $prevYear=$year;
-          $nextMonth=1;
-          $nextYear=$year+1;
-      break;
-      default:
-          $prevMonth=$month-1;
-          $prevYear=$year;
-          $nextMonth=$month+1;
-          $nextYear=$year;
-  }
 }else{
     $month=date("n");
     $year=date("Y");
-    switch($month){
+} 
+switch($month){
     case 1:
         $prevMonth=12;
         $prevYear=$year-1;
@@ -365,7 +360,6 @@
         $nextMonth=$month+1;
         $nextYear=$year;
 }
-}
   $firstday=$year."-".$month.("-1");
   $firstweekday=date("w",strtotime($firstday));
   $monthdays=date("t",strtotime($firstday));
@@ -374,10 +368,7 @@
   $today=date("Y-m-d");
   $day2=date("j");
   $datedays=[];
-
-$week=['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
-
-  
+  $week=['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];  
   for($i=0;$i<$firstweekday;$i++){
     $datedays[]="";
   }
@@ -394,7 +385,7 @@ $week=['星期日','星期一','星期二','星期三','星期四','星期五','
   // echo "<pre>";
   // print_r($datedays);
   // echo "</pre>";
-  echo "<p>今天是 $today ".$week[date('w')]."</p>";//輸出今天日期星期
+  echo "<p>&nbsp;今天是 $today ".$week[date('w')]."</p>";//輸出今天日期星期
 ?>
 <div class="showtime">
   <body onload="ShowTime()" ><!-- 現在時間 -->
@@ -474,26 +465,24 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
       <option value="12">12</option>
     </select>
   </div>
-  
   <div class="btn">
-    <p style="margin: 30px"><input type="submit" value="送出查詢" style="font-size: 30px;" id="submit"></p>
+    <p style="margin: 30px; color:black;"><input type="submit" value="送出查詢" id="submit"></p>
     <p style="margin: 30px;font-size: 30px;"><a href='index.php?year=<?=$year=date('Y');?>&month=<?=$month=date('n');?>' id="now">當前月分</a></p>
-    <p style="margin: 30px"><input type="reset" value="清空資料" style="font-size: 30px;" id="reset"></p>
+    <p style="margin: 30px; color:black;"><input type="reset" value="清空資料" id="reset"></p>
   </div>
 </form>
-  
 </div>
 <section class="table">
   <div class="bar">
-    <p class="a1"><a href="index.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">《《</a></p>
+    <p class="a1" style="text-align: left;"><a href="index.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">《《</a></p>
 <?php
     if(empty($_GET['year']) || empty($_GET['month'])){
-      echo "<p class='header0'>".$year=date("Y")." 年 ".$month=date("n")." 月份日曆</p>";
+      echo "<p class='header0'>".$year=date("Y")." 年 ".$month=date("n")." 月份月曆</p>";
     }else{
       echo "<p class='header0'>".$_GET['year']." 年 ".$_GET['month']." 月份日曆</p>";
     }
 ?>      
-    <p class="a1"><a href="index.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">》》</a> </p> 
+    <p class="a1" style="text-align: right;"><a href="index.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">》》</a></p> 
 </div>
   <div class="header2">日</div>
   <div class="header">一</div>
@@ -502,7 +491,6 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
   <div class="header">四</div>
   <div class="header">五</div>
   <div class="header2">六</div>
-  
 <?php
 foreach($datedays as $k => $day){
        $hol=($k%7==0 || $k%7==6)?'weekend':'workday';//判定假日與非假日套用CSS
@@ -520,10 +508,7 @@ foreach($datedays as $k => $day){
   
        }
    }
-   ;
-
 ?>
-
 </section>
 </nav>
 </body>
