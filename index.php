@@ -341,6 +341,11 @@
     $month=date("n");
     $year=date("Y");
 } 
+$error="";
+if(!is_numeric($year) || !is_numeric($month)){
+  
+  // header("location:index.php?year=$year&month=$month");
+}
 switch($month){
     case 1:
         $prevMonth=12;
@@ -367,8 +372,13 @@ switch($month){
   $lastweekday=date("w",strtotime($lastday));
   $today=date("Y-m-d");
   $day2=date("j");
+  $festivalday=array('0101','0214','0312','0401','0501','0903','1010','1031','1224','1225');
   $datedays=[];
-  $week=['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];  
+  $festival=array('元旦','情人節','植樹節','愚人節','勞動節','軍人節','國慶節','萬聖節','平安夜','聖誕節'); 
+  $week=['星期日','星期一','星期二','星期三','星期四','星期五','星期六']; 
+  print_r($festivalday) ;
+  echo $festival[$festivalday[0]];
+  
   for($i=0;$i<$firstweekday;$i++){
     $datedays[]="";
   }
@@ -391,10 +401,20 @@ switch($month){
   <body onload="ShowTime()" ><!-- 現在時間 -->
     <p class="titletop2">&nbsp;現在時間&nbsp;:&nbsp;</p>
     <div id="showbox" ></div>
+  </body>
 </div>
   </section>  
-</body>
+
 <?php
+if(date("md") == $festivalday){
+  echo "今天是 ".$festival[$festivalday];
+}else{
+if(date('w')==0 || date('w')==6){
+  echo "今天是平平凡凡的假日!";
+}else{
+  echo "今天是平平凡凡的一天!";
+}
+}
 $words=["你不一定要很厲害，才能開始；但你要開始，才能很厲害。","記住你的價值，它不因外觀的不雅而貶值，是金子總有發光的一天。",
         "沒有退路時，潛能就發揮出來了。","永不言敗，是成功者的最佳品格。","如果你向神求助，說明你相信神的能力；如果神沒有幫助你，說明神相信你的能力。",
         "要成功，先發瘋，頭腦簡單向前衝。","一個人只要有夢想，生命就有了依託；一個人只有不懈地追逐著夢想，活著才覺得意義深遠，趣味無窮，也才能將生命的潛能發揮到極致。",
@@ -440,7 +460,7 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
 <P style="font-size: 30px;color:chocolate;text-align:center;font-weight:bold">氣象資訊</P>
 <iframe width="730" height="450" src="https://embed.windy.com/embed2.html?lat=23.140&lon=121.641&detailLat=24.939&detailLon=121.542&width=730&height=450&zoom=6&level=surface&overlay=clouds&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=true&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
 <form action="index.php" method="get">
-  <h1 style="color:red;text-align:center; font-size:50px;margin-top:20px;">請輸入年份和月分</h1>
+  <h1 style="color:red;text-align:center; font-size:50px;margin-top:50px;">請輸入年份和月分</h1>
   <?php
    $error="";
   if(!is_numeric($year) || !is_numeric($month)){
@@ -449,8 +469,9 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
   }
   ?>
   <div class="text">
-    年份: <input type="text" name="year" style="font-size: 30px;width:200px;" value="1993">
+    年份: <input type="text" name="year" style="font-size: 30px;width:200px;" value="">
     月分: <select name="month" id="" style="font-size: 30px;">
+      <option value="0"></option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -502,7 +523,6 @@ foreach($datedays as $k => $day){
            }else{
               echo "<div class='{$hol}'>{$dayFormat}</div>";
            }
-              
        }else{
            echo "<div class='{$hol}' style='opacity: 0.3;'></div>";
   
