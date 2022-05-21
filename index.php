@@ -7,7 +7,52 @@
       margin: 0;
     }
     
-    
+    .festival{
+      color: black;/*透明色 */
+      font-size: 50px;
+      font-weight: bolder;
+      text-align: center;
+      -webkit-text-stroke: 1px fuchsia;
+      text-decoration: underline wavy blue 3px;
+      /* opacity: 0.5; */
+    }
+    .f1{
+      width: 26%;
+      margin: 10px auto;
+      font-family: 'Microsoft JhengHei';
+      font-size: 40px;
+      font-weight: bolder;
+      text-align: center;
+      color:chartreuse;
+      -webkit-text-stroke: 1.5px black;
+      /* text-decoration:underline overline dotted red; */
+      border: 10px dotted darkviolet;
+    }
+    .f2{
+      width: 26%;
+      margin: 10px auto;
+      font-family: 'Microsoft JhengHei';
+      font-size: 40px;
+      font-weight: bolder;
+      text-align: center;
+      color:azure;
+      -webkit-text-stroke: 1.5px black;
+      /* text-decoration:underline overline dotted red; */
+      border: 10px dotted darkred;
+    }
+    .festival:hover{
+      font-size: 80px;
+      color: transparent;
+      -webkit-text-stroke: 4px darkmagenta;
+    }
+    .f1:hover{
+      width:51%;
+      font-size: 80px;
+    }
+    .f2:hover{
+      width:51%;
+      font-size: 80px;
+    }
     nav{ /*兩大區塊排版 */
       display: flex;
       justify-content: space-around;
@@ -259,6 +304,28 @@
         justify-content: space-around;
         margin: 20px auto;
       }
+      .festival{
+        font-size: 30px;
+      }
+      .f1{
+        width:50%;
+        font-size: 30px;
+      }
+      .f2{
+        width:50%;
+        font-size: 30px;
+      }
+      .festival:hover{
+        font-size: 40px;
+      }
+      .f1:hover{
+        width:57%;
+        font-size: 40px;
+      }
+      .f2:hover{
+        width:57%;
+        font-size: 40px;
+      }
       .table{
         margin-top: 20px;
       }
@@ -291,6 +358,28 @@
         flex-direction: column;
         justify-content: space-around;
         margin: 10px auto;
+      }
+      .festival{
+        font-size: 30px;
+      }
+      .f1{
+        width:50%;
+        font-size: 30px;
+      }
+      .f2{
+        width:50%;
+        font-size: 30px;
+      }
+      .festival:hover{
+        font-size: 40px;
+      }
+      .f1:hover{
+        width:57%;
+        font-size: 40px;
+      }
+      .f2:hover{
+        width:57%;
+        font-size: 40px;
       }
       .table{
         margin-top: 20px;
@@ -372,12 +461,13 @@ switch($month){
   $lastweekday=date("w",strtotime($lastday));
   $today=date("Y-m-d");
   $day2=date("j");
-  $festivalday=array('0101','0214','0312','0401','0501','0903','1010','1031','1224','1225');
   $datedays=[];
-  $festival=array('元旦','情人節','植樹節','愚人節','勞動節','軍人節','國慶節','萬聖節','平安夜','聖誕節'); 
+  $festivalday=array('0101','0214','0312','0401','0501','0903','1007','1010','1031','1224','1225');
+  $festival=array('0101'=>' 元 旦 ','0214'=>' 情 人 節 ','0312'=>' 植 樹 節 ','0401'=>' 愚 人 節 ','0501'=>' 勞 動 節 ','0903'=>' 軍 人 節 ','1007'=>' 劉 老 師 和 我 的 生 日 ! ! 加 分 ~','1010'=>' 國 慶 節 ','1031'=>' 萬 聖 節 ','1224'=>' 平 安 夜 ','1225'=>' 聖 誕 節 '); 
   $week=['星期日','星期一','星期二','星期三','星期四','星期五','星期六']; 
-  print_r($festivalday) ;
-  echo $festival[$festivalday[0]];
+  // print_r($festivalday) ;
+  // echo $festivalday[0];
+  // echo $festival[$festivalday['0101']];
   
   for($i=0;$i<$firstweekday;$i++){
     $datedays[]="";
@@ -406,13 +496,14 @@ switch($month){
   </section>  
 
 <?php
-if(date("md") == $festivalday){
-  echo "今天是 ".$festival[$festivalday];
+//設定節日
+if(date("md") == $festivalday[0] || date("md") == $festivalday[1] || date("md") == $festivalday[2] || date("md") == $festivalday[3] || date("md") == $festivalday[4] || date("md") == $festivalday[5] || date("md") == $festivalday[6] || date("md") == $festivalday[7] || date("md") == $festivalday[8] || date("md") == $festivalday[9] || date("md") == $festivalday[10]){
+  echo "<p class='festival'>今 天 是 ".$festival[date("md")]."</p>";
 }else{
 if(date('w')==0 || date('w')==6){
-  echo "今天是平平凡凡的假日!";
+  echo "<p class='f1'>今 天 是 平 平 凡 凡 的 假 日 !</p>";
 }else{
-  echo "今天是平平凡凡的一天!";
+  echo "<p class='f2'>今 天 是 平 平 凡 凡 的 一 天 !</p>";
 }
 }
 $words=["你不一定要很厲害，才能開始；但你要開始，才能很厲害。","記住你的價值，它不因外觀的不雅而貶值，是金子總有發光的一天。",
@@ -450,7 +541,7 @@ $words=["你不一定要很厲害，才能開始；但你要開始，才能很�
         "Learn to walk before you run.","Constant dropping wears the stone.","Experience is the mother of wisdom.","Every man is his own worst enemy.","From small beginnings comes great things.",
         "All things in their being are good for something.","Failure is the mother of success.","Never underestimate your power to change yourself！"];
 $num=rand(0,104);
-echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:25px;font-weight:bold;'>每日一句: ".$words[$num]."</marquee>";
+echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:25px;font-weight:bold;margin-top:10px;'>每日一句: ".$words[$num]."</marquee>";
 ?>
 <video autoplay muted loop id="myVideo">
   <source src="./resource/video.mp4" type="video/mp4">
