@@ -420,10 +420,7 @@
     }
 </script>
 <body>
-<audio autoplay=1 loop=1>
-  <source src="./resource/Silver Scrapes.mp3" type="audio/mp3">
-Your browser does not support the audio element.
-</audio>
+<audio src="./resource/Silver Scrapes.mp3" autoplay="true" loop="true">此瀏覽器版本不支援或檔案不存在!</audio>
 <!-- <h1 style="text-align:center">萬年曆</h1> -->
 <?php
 /*請在這裹撰寫你的萬年曆程式碼*/  
