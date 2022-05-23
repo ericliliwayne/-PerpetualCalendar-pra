@@ -1,5 +1,6 @@
 <html>
   <title>萬年曆作業</title>
+  
   <style>
    /*請在這裹撰寫你的CSS*/ 
     *{
@@ -419,6 +420,10 @@
     }
 </script>
 <body>
+<audio autoplay=1 loop=1>
+  <source src="./resource/Silver Scrapes.mp3" type="audio/mp3">
+Your browser does not support the audio element.
+</audio>
 <!-- <h1 style="text-align:center">萬年曆</h1> -->
 <?php
 /*請在這裹撰寫你的萬年曆程式碼*/  
@@ -543,7 +548,7 @@ $words=["你不一定要很厲害，才能開始；但你要開始，才能很�
 $num=rand(0,104);
 echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:25px;font-weight:bold;margin-top:10px;'>每日一句: ".$words[$num]."</marquee>";
 ?>
-<video autoplay muted loop id="myVideo">
+<video autoplay muted loop id="myVideo"><!--置入影片上方CSS調整為背景影片-->
   <source src="./resource/video.mp4" type="video/mp4">
 </video>
 <nav>
@@ -609,13 +614,13 @@ foreach($datedays as $k => $day){
        
        if(!empty($day)){
            $dayFormat=date("j",strtotime($day));
-           if($day == $today){
+           if($day == $today){//判斷今天日期並做變化
               echo "<div class='today {$hol}'>{$dayFormat}</div>";
            }else{
               echo "<div class='{$hol}'>{$dayFormat}</div>";
            }
        }else{
-           echo "<div class='{$hol}' style='opacity: 0.3;'></div>";
+           echo "<div class='{$hol}' style='opacity: 0.3;'></div>";//印空白+透明效果
   
        }
    }
