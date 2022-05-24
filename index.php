@@ -63,7 +63,9 @@
     .bar{ /*上下月之區塊*/
       width: 100%;
       display: flex;
+      /* flex-wrap: wrap; */
     }
+    
     .bar>.a1{/*上下月區塊調色*/ 
       width: 15%;
       box-shadow: 5px 5px 10px black;
@@ -81,6 +83,7 @@
       color:lime;
       font-weight: bold;
     }
+    
     .table0{ /*左邊大區塊 */
       width: 830px;
       height: 820px;
@@ -167,7 +170,6 @@
       border-bottom: 1px solid white;
       margin: 0 auto;
       box-shadow: 5px 5px 10px black;
-      
     }
     
     .header{/*平日欄位欄*/
@@ -201,6 +203,22 @@
       margin: 0 auto;
       box-shadow: 5px 5px 10px black;
       margin-bottom: 5px;
+    }
+    .header3{/*假日欄位欄 */
+      font-family: 'Microsoft JhengHei';
+      font-size: 58px;
+      text-align: left;
+      font-weight: bolder;
+      color: red;
+      /* background-color: black; */
+      width:100%;
+      margin: 0 auto;
+      text-shadow: 5px 5px 10px black;
+      margin-bottom: 5px;
+    }
+    .header3>span{
+      color: darkgoldenrod;
+      text-decoration: underline wavy aqua 3px;
     }
 
     .workday{/*平日區塊 */
@@ -278,25 +296,45 @@
       margin: 20px auto;
       justify-content: space-between;
       font-size: 30px;
-      
+      align-items:baseline;
+      align-content:center;
     }
     #now{
-      color:black;
+      color:gold;
       text-decoration: none;
       font-size: 31px;
-      border: 1px solid black;
+      border: 2px solid white;
       padding: 5px;
+      background-color: black;
+    }
+    #submit,#reset{
+      color:black;
+      text-decoration: none;
+      height: 50px;
+      font-size: 31px;
+      border: 2px solid black;
+      padding: 5px auto;
+      border-radius: 25%;
       background-color: lightgray;
     }
-    #submit #reset{
-      color: black;
-      font-size: 30px;
-      background-color: lightgray;
-    }
-    #submit,#reset,#now:hover{
+    #submit:hover{
       color: blue;
+      height: 60px;
       font-size: 40px;
-      background-color: lightsteelblue;
+      background-color: lightgreen;
+    }
+    #reset:hover{
+      color: blue;
+      height: 60px;
+      font-size: 40px;
+      background-color: lightpink;
+    }
+    #now:hover{
+      color: black;
+      height: 60px;
+      font-size: 40px;
+      border: 2px solid black;
+      background-color: gold;
     }
     @media (min-width:577px) and (max-width:1705px){/*RWD平板尺寸 */
       nav{
@@ -424,11 +462,7 @@
 <!-- <h1 style="text-align:center">萬年曆</h1> -->
 <?php
 /*請在這裹撰寫你的萬年曆程式碼*/  
-  date_default_timezone_set("Asia/Taipei");//調整時區
-  if(empty($_GET['year']) && !is_numeric($_GET['year']) && !is_numeric($_GET['month'])){
-    $month=date("n");
-    $year=date("Y");
-  }else{
+  date_default_timezone_set("Asia/Taipei");//調整時區 
   if(isset($_GET['month'])){
     $month=$_GET['month'];
     $year=$_GET['year'];
@@ -436,8 +470,6 @@
     $month=date("n");
     $year=date("Y");
 } 
-$error="";
-
 switch($month){
     case 1:
         $prevMonth=12;
@@ -457,7 +489,7 @@ switch($month){
         $nextMonth=$month+1;
         $nextYear=$year;
 }
-}
+
   $firstday=$year."-".$month.("-1");
   $firstweekday=date("w",strtotime($firstday));
   $monthdays=date("t",strtotime($firstday));
@@ -552,21 +584,21 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
 </video>
 <nav>
 <div class="table0">
-<P style="font-size: 30px;color:chocolate;text-align:center;font-weight:bold">氣象資訊</P>
+<P style="font-size: 40px;color:lightgreen;text-align:center;font-weight:bold">氣象資訊</P>
 <iframe width="730" height="450" src="https://embed.windy.com/embed2.html?lat=23.140&lon=121.641&detailLat=24.939&detailLon=121.542&width=730&height=450&zoom=6&level=surface&overlay=clouds&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=true&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
 <form action="index.php" method="get">
-  <h1 style="color:red;text-align:center; font-size:50px;margin-top:50px;">請輸入年份和月分</h1>
+  <h1 style="color:red;text-align:center; font-size:50px;margin-top:50px;">萬年曆查詢</h1>
   <?php
    $error="";
-  if(!is_numeric($year) || !is_numeric($month)){
-    $error="輸入格式錯誤，請重新輸入!";
+  if(empty($year) || !is_numeric($year)){//年份欄位內若為空值及非純數字則錯誤
+    $error="輸入錯誤，請重新輸入!!";
     echo "<h3 style='color:yellow;text-align:center'>".$error."</h3>";
   }
   ?>
   <div class="text">
-    年份: <input type="text" name="year" style="font-size: 30px;width:200px;" value="<?=$year=date('Y');?>">
+    年份: <input type="text" name="year" style="font-size: 30px;width:200px;" value="查詢年份">
     月分: <select name="month" id="" style="font-size: 30px;">
-      <option value="0"></option>
+      <option value="<?=$month=date('n');?>"><?=$month=date('n');?></option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -582,22 +614,22 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
     </select>
   </div>
   <div class="btn">
-    <p style="margin: 30px; color:black;"><input type="submit" value="送出查詢" id="submit"></p>
-    <p style="margin: 30px;font-size: 30px;"><a href='index.php?year=<?=$year=date('Y');?>&month=<?=$month=date('n');?>' id="now">當前月分</a></p>
-    <p style="margin: 30px; color:black;"><input type="reset" value="清空資料" id="reset"></p>
+    <button type="submit" value="送出資料" id="submit">送出查詢</button>
+    <p style="margin: 30px;font-size: 30px;"><a href='index.php?year=<?=$year=date('Y');?>&month=<?=$month=date('n');?>' id="now">現在日期</a></p>
+    <button type="reset" value="清空資料" id="reset">清空資料</button>
   </div>
 </form>
 </div>
+
 <section class="table">
   <div class="bar">
-    <p class="a1" style="text-align: left;"><a href="index.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">《《</a></p>
 <?php
-    if(empty($_GET['year']) || empty($_GET['month'])){
-      echo "<p class='header0'>".$year=date("Y")." 年 ".$month=date("n")." 月份月曆</p>";
-    }else{
-      echo "<p class='header0'>".$_GET['year']." 年 ".$_GET['month']." 月份日曆</p>";
-    }
-?>      
+    if(empty($_GET['year']) || !is_numeric($year) || !is_numeric($_GET['year'])){//年份欄位內若為空值及非純數字則錯誤
+      echo "<p class='header3'>請在年分欄位內輸入純數字!<span>※非數字或是空白則為錯誤!</span>輸入正確即可檢視月曆~</p>"; 
+    }else{//年份欄位內若為純數字則印出該年月的月曆
+    echo "<p class='header0'>".floor($_GET['year'])." 年 ".$_GET['month']." 月份日曆</p>";
+?>
+    <p class="a1" style="text-align: left;"><a href="index.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">《《</a></p>
     <p class="a1" style="text-align: right;"><a href="index.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">》》</a></p> 
 </div>
   <div class="header2">日</div>
@@ -623,6 +655,7 @@ foreach($datedays as $k => $day){
   
        }
    }
+  }
 ?>
 </section>
 </nav>
