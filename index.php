@@ -420,11 +420,15 @@
     }
 </script>
 <body>
-<audio src="./resource/Silver Scrapes.mp3" autoplay="true" loop="true">此瀏覽器版本不支援或檔案不存在!</audio>
+<audio src="./resource/Silver Scrapes.mp3" autoplay="true" loop="true">此瀏覽器版本不支援或檔案不存在!</audio><!--置入背景音樂-->
 <!-- <h1 style="text-align:center">萬年曆</h1> -->
 <?php
 /*請在這裹撰寫你的萬年曆程式碼*/  
   date_default_timezone_set("Asia/Taipei");//調整時區
+  if(empty($_GET['year']) && !is_numeric($_GET['year']) && !is_numeric($_GET['month'])){
+    $month=date("n");
+    $year=date("Y");
+  }else{
   if(isset($_GET['month'])){
     $month=$_GET['month'];
     $year=$_GET['year'];
@@ -433,10 +437,7 @@
     $year=date("Y");
 } 
 $error="";
-if(!is_numeric($year) || !is_numeric($month)){
-  
-  // header("location:index.php?year=$year&month=$month");
-}
+
 switch($month){
     case 1:
         $prevMonth=12;
@@ -455,6 +456,7 @@ switch($month){
         $prevYear=$year;
         $nextMonth=$month+1;
         $nextYear=$year;
+}
 }
   $firstday=$year."-".$month.("-1");
   $firstweekday=date("w",strtotime($firstday));
@@ -562,7 +564,7 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
   }
   ?>
   <div class="text">
-    年份: <input type="text" name="year" style="font-size: 30px;width:200px;" value="">
+    年份: <input type="text" name="year" style="font-size: 30px;width:200px;" value="<?=$year=date('Y');?>">
     月分: <select name="month" id="" style="font-size: 30px;">
       <option value="0"></option>
       <option value="1">1</option>
