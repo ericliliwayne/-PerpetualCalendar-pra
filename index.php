@@ -1,13 +1,11 @@
 <html>
   <title>萬年曆作業</title>
-  
   <style>
    /*請在這裹撰寫你的CSS*/ 
     *{
       box-sizing: border-box;
       margin: 0;
     }
-    
     .festival{
       color: black;/*透明色 */
       font-size: 50px;
@@ -65,16 +63,23 @@
       display: flex;
       /* flex-wrap: wrap; */
     }
-    
-    .bar>.a1{/*上下月區塊調色*/ 
-      width: 15%;
+    .bar>.a1{/*上下年區塊調色*/ 
+      width: 27.5%;
       box-shadow: 5px 5px 10px black;
       background-color: black;
       border-bottom: 1px solid white;
       height: 100%;
       font-size: 40px;
     }
-    .a1>a{/*上下月文字CSS修改 */
+    .bar>.a2{/*上下月區塊調色*/ 
+      width: 10%;
+      box-shadow: 5px 5px 10px black;
+      background-color: black;
+      border-bottom: 1px solid white;
+      height: 100%;
+      font-size: 40px;
+    }
+    .a1>a{/*上下年文字CSS修改 */
       text-decoration:none ;
       color: white;
       line-height: 140%;
@@ -83,7 +88,15 @@
       color:lime;
       font-weight: bold;
     }
-    
+    .a2>a{/*上下月文字CSS修改 */
+      text-decoration:none ;
+      color: white;
+      line-height: 140%;
+    }
+    .a2>a:hover{
+      color:aqua;
+      font-weight: bold;
+    }
     .table0{ /*左邊大區塊 */
       width: 830px;
       height: 820px;
@@ -171,7 +184,6 @@
       margin: 0 auto;
       box-shadow: 5px 5px 10px black;
     }
-    
     .header{/*平日欄位欄*/
       font-family:'Microsoft JhengHei';
       font-size: 50px;
@@ -209,18 +221,18 @@
       font-size: 58px;
       text-align: left;
       font-weight: bolder;
-      color: red;
+      color: crimson;
       /* background-color: black; */
       width:100%;
       margin: 0 auto;
+      -webkit-text-stroke: 1px black;
       text-shadow: 5px 5px 10px black;
       margin-bottom: 5px;
     }
     .header3>span{
-      color: darkgoldenrod;
-      text-decoration: underline wavy aqua 3px;
+      color: gold;
+      text-decoration: underline wavy aqua 5px;
     }
-
     .workday{/*平日區塊 */
       color: black;
       font-size: 80px;
@@ -260,6 +272,10 @@
       bottom: 0;
       z-index: -1;
     }
+    #myVideo2{
+      width:60%;
+      margin:10px AUTO;
+    }
     section{/*月曆區塊修改 */
       display: flex;
       justify-content: center;
@@ -272,6 +288,12 @@
     .showtime{/*實時時間修改 */
       display: flex;
       justify-content: center;
+    }
+    iframe{
+      box-shadow: 5px 5px 5px black;
+    }
+    iframe:hover{
+      box-shadow: 8px 8px 5px black;
     }
     form{/*查詢區修改 */
       height: 250px;
@@ -291,7 +313,7 @@
       text-align: center;
       font-size: 30px;
     }
-    .btn{
+    .btn{/*萬年曆下方按鈕排版設定*/
       display: flex;
       margin: 20px auto;
       justify-content: space-between;
@@ -303,38 +325,51 @@
       color:gold;
       text-decoration: none;
       font-size: 31px;
-      border: 2px solid white;
+      border: 5px solid white;
       padding: 5px;
       background-color: black;
+      box-shadow: 5px 5px 5px black;
+      text-shadow: 2px 2px 5px white;
     }
     #submit,#reset{
       color:black;
       text-decoration: none;
       height: 50px;
       font-size: 31px;
-      border: 2px solid black;
+      border: 5px solid black;
       padding: 5px auto;
       border-radius: 25%;
       background-color: lightgray;
+      box-shadow: 5px 5px 5px black;
+      line-height: 100%;
+      text-shadow: 2px 2px 5px black;
     }
     #submit:hover{
       color: blue;
       height: 60px;
       font-size: 40px;
       background-color: lightgreen;
+      box-shadow: 8px 8px 5px black;
+      border: 5px solid black;
+      text-shadow: 2px 2px 5px black;
     }
     #reset:hover{
       color: blue;
       height: 60px;
       font-size: 40px;
       background-color: lightpink;
+      box-shadow: 8px 8px 5px black;
+      border: 5px solid black;
+      text-shadow: 2px 2px 5px black;
     }
     #now:hover{
       color: black;
       height: 60px;
       font-size: 40px;
-      border: 2px solid black;
+      border: 5px solid black;
       background-color: gold;
+      box-shadow: 8px 8px 5px black;
+      text-shadow: 5px 5px 5px black;
     }
     @media (min-width:577px) and (max-width:1705px){/*RWD平板尺寸 */
       nav{
@@ -447,14 +482,14 @@
     }
     }
   </style>
-  <script language="JavaScript">
+  <script language="JavaScript">/*設定時間 */
     function ShowTime(){
     　var NowDate=new Date();
     　var h=NowDate.getHours();
     　var m=NowDate.getMinutes();
     　var s=NowDate.getSeconds();　
     　document.getElementById('showbox').innerHTML = h+'時'+m+'分'+s+'秒';
-    　setTimeout('ShowTime()',1000);
+    　setTimeout('ShowTime()',1000);//每秒(1000毫秒)更新一次時間
     }
 </script>
 <body>
@@ -489,7 +524,6 @@ switch($month){
         $nextMonth=$month+1;
         $nextYear=$year;
 }
-
   $firstday=$year."-".$month.("-1");
   $firstweekday=date("w",strtotime($firstday));
   $monthdays=date("t",strtotime($firstday));
@@ -501,10 +535,6 @@ switch($month){
   $festivalday=array('0101','0214','0312','0401','0501','0903','1007','1010','1031','1224','1225');
   $festival=array('0101'=>' 元 旦 ','0214'=>' 情 人 節 ','0312'=>' 植 樹 節 ','0401'=>' 愚 人 節 ','0501'=>' 勞 動 節 ','0903'=>' 軍 人 節 ','1007'=>' 劉 老 師 和 我 的 生 日 ! ! 加 分 ~','1010'=>' 國 慶 節 ','1031'=>' 萬 聖 節 ','1224'=>' 平 安 夜 ','1225'=>' 聖 誕 節 '); 
   $week=['星期日','星期一','星期二','星期三','星期四','星期五','星期六']; 
-  // print_r($festivalday) ;
-  // echo $festivalday[0];
-  // echo $festival[$festivalday['0101']];
-  
   for($i=0;$i<$firstweekday;$i++){
     $datedays[]="";
   }
@@ -518,9 +548,6 @@ switch($month){
   ?>
   <section>
   <?php
-  // echo "<pre>";
-  // print_r($datedays);
-  // echo "</pre>";
   echo "<p>&nbsp;今天是 $today ".$week[date('w')]."</p>";//輸出今天日期星期
 ?>
 <div class="showtime">
@@ -530,7 +557,6 @@ switch($month){
   </body>
 </div>
   </section>  
-
 <?php
 //設定節日
 if(date("md") == $festivalday[0] || date("md") == $festivalday[1] || date("md") == $festivalday[2] || date("md") == $festivalday[3] || date("md") == $festivalday[4] || date("md") == $festivalday[5] || date("md") == $festivalday[6] || date("md") == $festivalday[7] || date("md") == $festivalday[8] || date("md") == $festivalday[9] || date("md") == $festivalday[10]){
@@ -549,7 +575,7 @@ $words=["你不一定要很厲害，才能開始；但你要開始，才能很�
         "人生觀決定了一個人的人生追求；世界觀決定了一個人的思想境界；價值觀決定了一個人的行為準則。","人生就是生活的過程。哪能沒有風沒有雨？正是因為有了風雨的洗禮才能看見斑斕的彩虹；有了失敗的痛苦才會嘗到成功的喜悅。",
         "擁有夢想只是一種智力，實現夢想才是一種能力。","人生只有走出來的美麗，沒有等出來的輝煌。","人生就像騎腳踏車，想保持平衡就得往前走。",
         "不求與人相比，但求超越自己，要哭就哭出激動的淚水，要笑就笑出成長的性格！","我們必須在失敗中尋找勝利，在絕望中尋求希望。","一個人的夢想也許不值錢，但一個人的努力很值錢。",
-        "在真實的生命里，每樁偉業都由信心開始，並由信心跨出第一步。","這個世界不是因為你能做什麼，而是你該做什麼。","積極向上的心態，是成功者的最基本要素。",
+        "在真實的生命裡，每樁偉業都由信心開始，並由信心跨出第一步。","這個世界不是因為你能做什麼，而是你該做什麼。","積極向上的心態，是成功者的最基本要素。",
         "真正能讓你倒下的，不是對手，而是你絕望的內心。","所有的憂傷都是過往，當時間慢慢沉澱，你會發現，自己的快樂比想像的多得多。","生活總會給你另一個機會，這個機會叫明天。",
         "強大的信心，能克服來自內心的惡魔，產生無往不勝的勇氣。","寧願辛苦一陣子，不要辛苦一輩子。","遠大的目標非常重要，一定要有成功的企圖心，而且越大越好。",
         "人生最大的敵人是自己怯懦。","每天只看目標，別老想障礙。","過去不等於未來；沒有失敗，只有暫時停止成功；採取更大量的行動。","一個人只有在全力以赴的時候才能發揮最大的潛能。",
@@ -566,7 +592,7 @@ $words=["你不一定要很厲害，才能開始；但你要開始，才能很�
         "無人理睬時，堅定執著。萬人羨慕時，心如止水。","生活總會給你答案的，但不會馬上把一切都告訴你。只要你肯等一等，生活的美好，總在你不經意的時候，盛裝蒞臨。","為了不讓生活留下遺憾和後悔，我們應該儘可能抓住一切改變生活的機會。",
         "每一個人都擁有生命，卻不是每個人都能讀懂生命；每一個人都擁有頭腦，卻不是每個人都善用頭腦。","為明天做準備的最好方法，就是要集中你所有的智慧，所有的熱誠，把今天的事情做得盡善盡美。",
         "不要放棄自己，勇敢地接受生命的挑戰。有一天我們可以老死、病死、窮死，但絕不要允許自己失望而死，消極而死！","無志者常立志，有志者立常志，咬定一個目標的人最容易成功。",
-        "哪怕是最沒有希望的事情，只要有一個勇敢者去堅持做，到最後就會擁有希望。","如果你盼望明天，那必須先腳踏現實；如果你希望輝煌，那么你須腳不停步。","學會改變生活，學會品味滄桑，方可無悔青春，無憾歲月的消逝。",
+        "哪怕是最沒有希望的事情，只要有一個勇敢者去堅持做，到最後就會擁有希望。","如果你盼望明天，那必須先腳踏現實；如果你希望輝煌，那麼你須腳不停步。","學會改變生活，學會品味滄桑，方可無悔青春，無憾歲月的消逝。",
         "有望得到的要努力，無望得到的不介意，無論輸贏姿態都會好看。","運氣永遠不可能持續一輩子，能幫助你持續一輩子的東西，只有你個人的能力。","人生最重要的價值是心靈的幸福，而不是任何身外之物。",
         "做正確的事，再把事情做正確。","人生要成沉澱，要有定力，一個人定力不夠會浮躁。","人生在世，最重要的不是自己處境如何，而是你如何看待自己的處境。","機會是自己創造的，而不能一味的等待別人的賜予。",
         "一個人幸運的前提，其實是他有能力改變自己。","當你再也沒有什麼可以失去的時候，就是你開始得到的時候。","世界不會在意你的自尊，人們看的只是你的成就。在你沒有成就以前，切勿過分強調自尊。","不要為已消逝之年華嘆息，須正視欲匆匆溜走的時光。",
@@ -584,20 +610,20 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
 </video>
 <nav>
 <div class="table0">
-<P style="font-size: 40px;color:lightgreen;text-align:center;font-weight:bold">氣象資訊</P>
+<P style="font-size: 40px;color:lightgreen;text-align:center;font-weight:bold;text-shadow:5px 5px 5px black;-webkit-text-stroke: 1.5px black;">氣象資訊</P>
 <iframe width="730" height="450" src="https://embed.windy.com/embed2.html?lat=23.140&lon=121.641&detailLat=24.939&detailLon=121.542&width=730&height=450&zoom=6&level=surface&overlay=clouds&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=true&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
 <form action="index.php" method="get">
-  <h1 style="color:red;text-align:center; font-size:50px;margin-top:50px;">萬年曆查詢</h1>
+  <h1 style="color:red;text-align:center; font-size:50px;margin-top:50px;text-shadow:5px 5px 5px black;">萬年曆查詢</h1>
   <?php
    $error="";
   if(empty($year) || !is_numeric($year)){//年份欄位內若為空值及非純數字則錯誤
-    $error="輸入錯誤，請重新輸入!!";
-    echo "<h3 style='color:yellow;text-align:center'>".$error."</h3>";
+    $error="輸入格式錯誤，請重新輸入!!";
+    echo "<h3 style='color:yellow;text-align:center;text-shadow:5px 5px 5px black;'>".$error."</h3>";
   }
   ?>
   <div class="text">
-    年份: <input type="text" name="year" style="font-size: 30px;width:200px;" value="查詢年份">
-    月分: <select name="month" id="" style="font-size: 30px;">
+    年份: <input type="text" name="year" style="font-size: 30px;width:200px;text-shadow:3px 3px 5px black;" value="查詢年份">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    月份: <select name="month" id="" style="font-size: 30px;text-shadow:3px 3px 5px black;">
       <option value="<?=$month=date('n');?>"><?=$month=date('n');?></option>
       <option value="1">1</option>
       <option value="2">2</option>
@@ -620,17 +646,25 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
   </div>
 </form>
 </div>
-
 <section class="table">
-  <div class="bar">
 <?php
     if(empty($_GET['year']) || !is_numeric($year) || !is_numeric($_GET['year'])){//年份欄位內若為空值及非純數字則錯誤
-      echo "<p class='header3'>請在年分欄位內輸入純數字!<span>※非數字或是空白則為錯誤!</span>輸入正確即可檢視月曆~</p>"; 
-    }else{//年份欄位內若為純數字則印出該年月的月曆
-    echo "<p class='header0'>".floor($_GET['year'])." 年 ".$_GET['month']." 月份日曆</p>";
+      echo "<p class='header3'>請在年份欄位內輸入純數字!<span>※非數字或是空白則為錯誤!</span>輸入正確即可檢視月曆~</p>"; 
 ?>
-    <p class="a1" style="text-align: left;"><a href="index.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">《《</a></p>
-    <p class="a1" style="text-align: right;"><a href="index.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">》》</a></p> 
+      <video autoplay muted loop id="myVideo2">
+      <source src="./resource/cat.mp4" type="video/mp4">
+      </video>
+<?php    
+      }else{//年份欄位內若為純數字則印出該年月的月曆 
+?>
+  <div class="bar">
+    <p class="a1" style="text-align: left;"><a href="index.php?year=<?=($_GET['year']-1);?>&month=<?=$_GET['month'];?>">《《</a></p>
+    <p class="a2" style="text-align: left;"><a href="index.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">←</a></p>
+<?php
+    echo "<p class='header0'>".floor($_GET['year'])." 年 ".$_GET['month']." 月份</p>";
+?>
+    <p class="a2" style="text-align: right;"><a href="index.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">→</a></p> 
+    <p class="a1" style="text-align: right;"><a href="index.php?year=<?=($_GET['year']+1);?>&month=<?=$_GET['month'];?>">》》</a></p> 
 </div>
   <div class="header2">日</div>
   <div class="header">一</div>
