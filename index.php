@@ -16,7 +16,7 @@
       /* opacity: 0.5; */
     }
     .f1{
-      width: 26%;
+      width: 30%;
       margin: 10px auto;
       font-family: 'Microsoft JhengHei';
       font-size: 40px;
@@ -28,7 +28,7 @@
       border: 10px dotted darkviolet;
     }
     .f2{
-      width: 26%;
+      width: 30%;
       margin: 10px auto;
       font-family: 'Microsoft JhengHei';
       font-size: 40px;
@@ -45,11 +45,11 @@
       -webkit-text-stroke: 4px darkmagenta;
     }
     .f1:hover{
-      width:51%;
+      width:60%;
       font-size: 80px;
     }
     .f2:hover{
-      width:51%;
+      width:60%;
       font-size: 80px;
     }
     nav{ /*兩大區塊排版 */
@@ -492,6 +492,7 @@
     　setTimeout('ShowTime()',1000);//每秒(1000毫秒)更新一次時間
     }
 </script>
+
 <body>
 <audio src="./resource/Silver Scrapes.mp3" autoplay="true" loop="true">此瀏覽器版本不支援或檔案不存在!</audio><!--置入背景音樂-->
 <!-- <h1 style="text-align:center">萬年曆</h1> -->
@@ -618,8 +619,9 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
    $error="";
   if(empty($year) || !is_numeric($year)){//年份欄位內若為空值及非純數字則錯誤
     $error="輸入格式錯誤，請重新輸入!!";
+    echo "<script>alert('輸入格式錯誤，請重新輸入!!');</script>";
     echo "<h3 style='color:yellow;text-align:center;text-shadow:5px 5px 5px black;'>".$error."</h3>";
-  }
+    }
   ?>
   <div class="text">
     年份: <input type="text" name="year" style="font-size: 30px;width:200px;text-shadow:3px 3px 5px black;" value="查詢年份">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
