@@ -1,21 +1,20 @@
 <html>
-  <title>萬年曆作業</title>
+  <title>萬年曆查詢系統</title>
   <style>
    /*請在這裹撰寫你的CSS*/ 
     *{
       box-sizing: border-box;
       margin: 0;
     }
-    .festival{
+    .festival{/*節日句*/
       color: black;/*透明色 */
       font-size: 50px;
       font-weight: bolder;
       text-align: center;
       -webkit-text-stroke: 1px fuchsia;
       text-decoration: underline wavy blue 3px;
-      /* opacity: 0.5; */
     }
-    .f1{
+    .f1{/*假日句*/
       width: 30%;
       margin: 10px auto;
       font-family: 'Microsoft JhengHei';
@@ -24,10 +23,9 @@
       text-align: center;
       color:chartreuse;
       -webkit-text-stroke: 1.5px black;
-      /* text-decoration:underline overline dotted red; */
       border: 10px dotted darkviolet;
     }
-    .f2{
+    .f2{/*平日句*/
       width: 30%;
       margin: 10px auto;
       font-family: 'Microsoft JhengHei';
@@ -36,7 +34,6 @@
       text-align: center;
       color:azure;
       -webkit-text-stroke: 1.5px black;
-      /* text-decoration:underline overline dotted red; */
       border: 10px dotted darkred;
     }
     .festival:hover{
@@ -61,7 +58,6 @@
     .bar{ /*上下月之區塊*/
       width: 100%;
       display: flex;
-      /* flex-wrap: wrap; */
     }
     .bar>.a1{/*上下年區塊調色*/ 
       width: 27.5%;
@@ -105,7 +101,6 @@
       background-color: rgba(245, 245, 245, 0.1);
       box-shadow:  10px 10px 10px black;
       border-radius: 10% 10%;
-      /* margin-left: 75px; */
       margin: auto;
     }
     .table0:hover{
@@ -118,11 +113,9 @@
       flex-wrap: wrap;
       width: 830px;
       height: 820px;
-      /* border: 1px solid cadetblue; */
       justify-content:space-between;
       align-content:center;
       margin: auto;
-      /* box-shadow: inset 10px 10px 10px black; */
       box-shadow:  10px 10px 10px black;
       backdrop-filter: blur(5px);
       padding: 50PX;
@@ -130,17 +123,12 @@
       background-color: rgba(245, 245, 245, 0.1);
     }
     .table:hover{
-      /* background-color: lightblue; */
       box-shadow: 20px 20px 10px black;
       backdrop-filter: blur(5px);
     }
     .table>.weekend,.workday{/*平日/假日區塊調整 */
       font-family:'Times New Roman', Times, serif;
       flex-basis: calc(100% / 7.5);
-      /* height: 100px; */
-      /* max-width: 100%; */
-      /* max-height: 100%; */
-      /* border: 1px solid black; */
       margin: 2px auto;
       opacity: 0.7;
       box-shadow: 5px 5px 10px black;
@@ -222,7 +210,6 @@
       text-align: left;
       font-weight: bolder;
       color: crimson;
-      /* background-color: black; */
       width:100%;
       margin: 0 auto;
       -webkit-text-stroke: 1px black;
@@ -237,14 +224,12 @@
       color: black;
       font-size: 80px;
       text-align: center;
-      /* font-weight: normal; */
       background-color: lightgray;
       border: 1px solid lightgray;
     }
     .weekend{/*假日區塊 */
       color: red;
       font-size: 80px;
-      /* font-weight: normal; */
       text-align: center;
       background-color: lightpink;
       border: 1px solid lightpink;
@@ -254,7 +239,6 @@
       background: -webkit-linear-gradient(to top, #FFBFBF, #C2C2FF, #00FF00);
       background-clip: text;
       -webkit-background-clip: text;
-      /* background-color:; */
       color: transparent;
       font-size: 80px;
       font-weight: bolder;
@@ -272,7 +256,7 @@
       bottom: 0;
       z-index: -1;
     }
-    #myVideo2{
+    #myVideo2{/*貓影片*/
       width:60%;
       margin:10px AUTO;
     }
@@ -289,7 +273,7 @@
       display: flex;
       justify-content: center;
     }
-    iframe{
+    iframe{/*天氣資訊*/
       box-shadow: 5px 5px 5px black;
     }
     iframe:hover{
@@ -300,15 +284,13 @@
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      /* border: 1px solid black; */
-      /* align-items: center; */
     }
-    .text{
+    .text{/*查詢欄位*/
       text-align: center;
       font-size: 30px;
       color:aqua;
     }
-    .text>#year,#month{
+    .text>#year,#month{/*查詢欄位內文字*/
       width: 200px;
       text-align: center;
       font-size: 30px;
@@ -321,7 +303,7 @@
       align-items:baseline;
       align-content:center;
     }
-    #now{
+    #now{/*現在日期*/
       color:gold;
       text-decoration: none;
       font-size: 31px;
@@ -331,7 +313,7 @@
       box-shadow: 5px 5px 5px black;
       text-shadow: 2px 2px 5px white;
     }
-    #submit,#reset{
+    #submit,#reset{/*送出&重置按鈕*/
       color:black;
       text-decoration: none;
       height: 50px;
@@ -483,67 +465,67 @@
     }
   </style>
   <script language="JavaScript">/*設定時間 */
-    function ShowTime(){
+    function ShowTime(){/*抓取時間資料 */
     　var NowDate=new Date();
     　var h=NowDate.getHours();
     　var m=NowDate.getMinutes();
     　var s=NowDate.getSeconds();　
     　document.getElementById('showbox').innerHTML = h+'時'+m+'分'+s+'秒';
-    　setTimeout('ShowTime()',1000);//每秒(1000毫秒)更新一次時間
+    　setTimeout('ShowTime()',1000);//每秒(1000毫秒)更新一次時間資料
     }
 </script>
 
 <body>
 <audio src="./resource/Silver Scrapes.mp3" autoplay="true" loop="true">此瀏覽器版本不支援或檔案不存在!</audio><!--置入背景音樂-->
-<!-- <h1 style="text-align:center">萬年曆</h1> -->
 <?php
 /*請在這裹撰寫你的萬年曆程式碼*/  
   date_default_timezone_set("Asia/Taipei");//調整時區 
-  if(isset($_GET['month'])){
+  if(isset($_GET['month'])){ //年月若有接收到資料則引用接收到的資料
     $month=$_GET['month'];
     $year=$_GET['year'];
-}else{
+}else{ //否則預設年月值為當前年月值
     $month=date("n");
     $year=date("Y");
 } 
 switch($month){
-    case 1:
+    case 1: //1月時設定上月為12月
         $prevMonth=12;
         $prevYear=$year-1;
         $nextMonth=$month+1;
         $nextYear=$year;
     break;
-    case 12:
+    case 12: //12月時設定下月為1月
         $prevMonth=$month-1;
         $prevYear=$year;
         $nextMonth=1;
         $nextYear=$year+1;
     break;
-    default:
+    default: //其他月之上下月正常+1-1
         $prevMonth=$month-1;
         $prevYear=$year;
         $nextMonth=$month+1;
         $nextYear=$year;
 }
-  $firstday=$year."-".$month.("-1");
-  $firstweekday=date("w",strtotime($firstday));
-  $monthdays=date("t",strtotime($firstday));
-  $lastday=$year."-".$month.("-").$monthdays;
-  $lastweekday=date("w",strtotime($lastday));
-  $today=date("Y-m-d");
-  $day2=date("j");
-  $datedays=[];
-  $festivalday=array('0101','0214','0312','0401','0501','0903','1007','1010','1031','1224','1225');
+  $firstday=$year."-".$month.("-1"); //某月第一天
+  $firstweekday=date("w",strtotime($firstday)); //某月第一天為星期幾
+  $monthdays=date("t",strtotime($firstday)); //某月總天數
+  $lastday=$year."-".$month.("-").$monthdays; //某月最後一天
+  $lastweekday=date("w",strtotime($lastday)); //某月最後一天為星期幾
+  $today=date("Y-m-d"); //當前日期
+  $day2=date("j"); //當前-天
+  $datedays=[]; //即將放入日期的空陣列
+  $festivalday=array('0101','0214','0312','0401','0501','0903','1007','1010','1031','1224','1225');//節日日期陣列
+  //節日陣列
   $festival=array('0101'=>' 元 旦 ','0214'=>' 情 人 節 ','0312'=>' 植 樹 節 ','0401'=>' 愚 人 節 ','0501'=>' 勞 動 節 ','0903'=>' 軍 人 節 ','1007'=>' 劉 老 師 和 我 的 生 日 ! ! 加 分 ~','1010'=>' 國 慶 節 ','1031'=>' 萬 聖 節 ','1224'=>' 平 安 夜 ','1225'=>' 聖 誕 節 '); 
-  $week=['星期日','星期一','星期二','星期三','星期四','星期五','星期六']; 
-  for($i=0;$i<$firstweekday;$i++){
+  $week=['星期日','星期一','星期二','星期三','星期四','星期五','星期六']; //星期陣列
+  for($i=0;$i<$firstweekday;$i++){ //1號以前補印出空白
     $datedays[]="";
   }
-  for($i=0;$i<$monthdays;$i++){
+  for($i=0;$i<$monthdays;$i++){ //印出日期
     $date=date("Y-m-d",strtotime("+$i days",strtotime($firstday)));
     $datedays[]=$date;
   }
-  for($i=0;$i<(6-$lastweekday);$i++){
+  for($i=0;$i<(6-$lastweekday);$i++){ //當月最後一天以後補印出空白
     $datedays[]="";
   }
   ?>
@@ -569,6 +551,7 @@ if(date('w')==0 || date('w')==6){
   echo "<p class='f2'>今 天 是 平 平 凡 凡 的 一 天 !</p>";
 }
 }
+//名言陣列
 $words=["你不一定要很厲害，才能開始；但你要開始，才能很厲害。","記住你的價值，它不因外觀的不雅而貶值，是金子總有發光的一天。",
         "沒有退路時，潛能就發揮出來了。","永不言敗，是成功者的最佳品格。","如果你向神求助，說明你相信神的能力；如果神沒有幫助你，說明神相信你的能力。",
         "要成功，先發瘋，頭腦簡單向前衝。","一個人只要有夢想，生命就有了依託；一個人只有不懈地追逐著夢想，活著才覺得意義深遠，趣味無窮，也才能將生命的潛能發揮到極致。",
@@ -603,21 +586,23 @@ $words=["你不一定要很厲害，才能開始；但你要開始，才能很�
         "永遠不讓「恐懼」阻止自己去做真心喜歡的事。","Never say die.","Never put off what you can do today until tomorrow.","Believe in yourself.","Jack of all trades and master of none.","Knowledge is power.",
         "Learn to walk before you run.","Constant dropping wears the stone.","Experience is the mother of wisdom.","Every man is his own worst enemy.","From small beginnings comes great things.",
         "All things in their being are good for something.","Failure is the mother of success.","Never underestimate your power to change yourself！"];
-$num=rand(0,104);
+$num=rand(0,104);//亂數
+//亂數抽取名言並輸出
 echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:25px;font-weight:bold;margin-top:10px;'>每日一句: ".$words[$num]."</marquee>";
 ?>
 <video autoplay muted loop id="myVideo"><!--置入影片上方CSS調整為背景影片-->
   <source src="./resource/video.mp4" type="video/mp4">
 </video>
 <nav>
-<div class="table0">
+<div class="table0"> <!-- 置入氣象資訊 -->
 <P style="font-size: 40px;color:lightgreen;text-align:center;font-weight:bold;text-shadow:5px 5px 5px black;-webkit-text-stroke: 1.5px black;">氣象資訊</P>
 <iframe width="730" height="450" src="https://embed.windy.com/embed2.html?lat=23.140&lon=121.641&detailLat=24.939&detailLon=121.542&width=730&height=450&zoom=6&level=surface&overlay=clouds&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=true&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
+<!-- 萬年曆查詢 -->
 <form action="index.php" method="get">
   <h1 style="color:red;text-align:center; font-size:50px;margin-top:50px;text-shadow:5px 5px 5px black;">萬年曆查詢</h1>
   <?php
    $error="";
-  if(empty($year) || !is_numeric($year)){//年份欄位內若為空值及非純數字則錯誤
+  if(empty($year) || !is_numeric($year)){//年份欄位內若為空值及非純數字則提醒錯誤
     $error="輸入格式錯誤，請重新輸入!!";
     echo "<script>alert('輸入格式錯誤，請重新輸入!!');</script>";
     echo "<h3 style='color:yellow;text-align:center;text-shadow:5px 5px 5px black;'>".$error."</h3>";
@@ -626,7 +611,7 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
   <div class="text">
     年份: <input type="text" name="year" style="font-size: 30px;width:200px;text-shadow:3px 3px 5px black;" value="查詢年份">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     月份: <select name="month" id="" style="font-size: 30px;text-shadow:3px 3px 5px black;">
-      <option value="<?=$month=date('n');?>"><?=$month=date('n');?></option>
+      <option value="<?=$month=date('n');?>"><?=$month=date('n');?></option> <!-- 月分預設值為當前月分 -->
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -653,22 +638,23 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
     if(empty($_GET['year']) || !is_numeric($year) || !is_numeric($_GET['year'])){//年份欄位內若為空值及非純數字則錯誤
       echo "<p class='header3'>請在年份欄位內輸入純數字!<span>※非數字或是空白則為錯誤!</span>輸入正確即可檢視月曆~</p>"; 
 ?>
-      <video autoplay muted loop id="myVideo2">
+      <video autoplay muted loop id="myVideo2"> <!-- 置入貓的影片 -->
       <source src="./resource/cat.mp4" type="video/mp4">
       </video>
 <?php    
       }else{//年份欄位內若為純數字則印出該年月的月曆 
 ?>
-  <div class="bar">
+  <div class="bar"> <!-- 去年&上月連結 -->
     <p class="a1" style="text-align: left;"><a href="index.php?year=<?=($_GET['year']-1);?>&month=<?=$_GET['month'];?>">《《</a></p>
     <p class="a2" style="text-align: left;"><a href="index.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">←</a></p>
 <?php
-    echo "<p class='header0'>".floor($_GET['year'])." 年 ".$_GET['month']." 月份</p>";
+    echo "<p class='header0'>".floor($_GET['year'])." 年 ".$_GET['month']." 月份</p>"; //月曆標題
 ?>
+    <!-- 明年&下月連結 -->
     <p class="a2" style="text-align: right;"><a href="index.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">→</a></p> 
     <p class="a1" style="text-align: right;"><a href="index.php?year=<?=($_GET['year']+1);?>&month=<?=$_GET['month'];?>">》》</a></p> 
 </div>
-  <div class="header2">日</div>
+  <div class="header2">日</div><!-- 星期欄位 -->
   <div class="header">一</div>
   <div class="header">二</div>
   <div class="header">三</div>
@@ -676,7 +662,7 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
   <div class="header">五</div>
   <div class="header2">六</div>
 <?php
-foreach($datedays as $k => $day){
+foreach($datedays as $k => $day){ //印出日期
        $hol=($k%7==0 || $k%7==6)?'weekend':'workday';//判定假日與非假日套用CSS
        
        if(!empty($day)){
