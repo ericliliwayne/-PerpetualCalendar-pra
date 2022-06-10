@@ -7,34 +7,10 @@
       margin: 0;
     }
     .festival{/*節日句*/
-      color: black;/*透明色 */
-      font-size: 50px;
-      font-weight: bolder;
-      text-align: center;
-      -webkit-text-stroke: 1px fuchsia;
-      text-decoration: underline wavy blue 3px;
-    }
-    .f1{/*假日句*/
-      width: 30%;
-      margin: 10px auto;
-      font-family: 'Microsoft JhengHei';
+      color: chocolate;
       font-size: 40px;
       font-weight: bolder;
       text-align: center;
-      color:chartreuse;
-      -webkit-text-stroke: 1.5px black;
-      border: 10px dotted darkviolet;
-    }
-    .f2{/*平日句*/
-      width: 30%;
-      margin: 10px auto;
-      font-family: 'Microsoft JhengHei';
-      font-size: 40px;
-      font-weight: bolder;
-      text-align: center;
-      color:azure;
-      -webkit-text-stroke: 1.5px black;
-      border: 10px dotted darkred;
     }
     .festival:hover{
       font-size: 80px;
@@ -256,10 +232,6 @@
       bottom: 0;
       z-index: -1;
     }
-    #myVideo2{/*貓影片*/
-      width:60%;
-      margin:10px AUTO;
-    }
     section{/*月曆區塊修改 */
       display: flex;
       justify-content: center;
@@ -361,26 +333,7 @@
         margin: 20px auto;
       }
       .festival{
-        font-size: 30px;
-      }
-      .f1{
-        width:50%;
-        font-size: 30px;
-      }
-      .f2{
-        width:50%;
-        font-size: 30px;
-      }
-      .festival:hover{
-        font-size: 40px;
-      }
-      .f1:hover{
-        width:57%;
-        font-size: 40px;
-      }
-      .f2:hover{
-        width:57%;
-        font-size: 40px;
+        color: darkslategray;
       }
       .table{
         margin-top: 20px;
@@ -416,26 +369,7 @@
         margin: 10px auto;
       }
       .festival{
-        font-size: 30px;
-      }
-      .f1{
-        width:50%;
-        font-size: 30px;
-      }
-      .f2{
-        width:50%;
-        font-size: 30px;
-      }
-      .festival:hover{
-        font-size: 40px;
-      }
-      .f1:hover{
-        width:57%;
-        font-size: 40px;
-      }
-      .f2:hover{
-        width:57%;
-        font-size: 40px;
+        color: darkslategray;
       }
       .table{
         margin-top: 20px;
@@ -476,7 +410,6 @@
 </script>
 
 <body>
-<audio src="./resource/Silver Scrapes.mp3" autoplay="true" loop="true">此瀏覽器版本不支援或檔案不存在!</audio><!--置入背景音樂-->
 <?php
 /*請在這裹撰寫你的萬年曆程式碼*/  
   date_default_timezone_set("Asia/Taipei");//調整時區 
@@ -516,7 +449,7 @@ switch($month){
   $datedays=[]; //即將放入日期的空陣列
   $festivalday=array('0101','0214','0312','0401','0501','0903','1007','1010','1031','1224','1225');//節日日期陣列
   //節日陣列
-  $festival=array('0101'=>' 元 旦 ','0214'=>' 情 人 節 ','0312'=>' 植 樹 節 ','0401'=>' 愚 人 節 ','0501'=>' 勞 動 節 ','0903'=>' 軍 人 節 ','1007'=>' 劉 老 師 和 我 的 生 日 ! ! 加 分 ~','1010'=>' 國 慶 節 ','1031'=>' 萬 聖 節 ','1224'=>' 平 安 夜 ','1225'=>' 聖 誕 節 '); 
+  $festival=array('0101'=>'元旦','0214'=>'情人節','0312'=>'植樹節','0401'=>'愚人節','0501'=>'勞動節 ','0903'=>'軍人節 ','1007'=>'劉老師和我的生日!!加分~','1010'=>'國慶節','1031'=>'萬聖節','1224'=>'平安夜','1225'=>'聖誕節'); 
   $week=['星期日','星期一','星期二','星期三','星期四','星期五','星期六']; //星期陣列
   for($i=0;$i<$firstweekday;$i++){ //1號以前補印出空白
     $datedays[]="";
@@ -531,7 +464,12 @@ switch($month){
   ?>
   <section>
   <?php
-  echo "<p>&nbsp;今天是 $today ".$week[date('w')]."</p>";//輸出今天日期星期
+  //設定節日
+  $festivaldays="";
+  if(date("md") == $festivalday[0] || date("md") == $festivalday[1] || date("md") == $festivalday[2] || date("md") == $festivalday[3] || date("md") == $festivalday[4] || date("md") == $festivalday[5] || date("md") == $festivalday[6] || date("md") == $festivalday[7] || date("md") == $festivalday[8] || date("md") == $festivalday[9] || date("md") == $festivalday[10]){
+  $festivaldays="<span class='festival'>今天是".$festival[date("md")]."。</span>";
+  }
+  echo "<p>&nbsp;今天是 $today ".$week[date('w')]."，".$festivaldays." </p>";//輸出今天日期星期(若有節日則增加節日文字上去)
 ?>
 <div class="showtime">
   <body onload="ShowTime()" ><!-- 現在時間 -->
@@ -541,16 +479,7 @@ switch($month){
 </div>
   </section>  
 <?php
-//設定節日
-if(date("md") == $festivalday[0] || date("md") == $festivalday[1] || date("md") == $festivalday[2] || date("md") == $festivalday[3] || date("md") == $festivalday[4] || date("md") == $festivalday[5] || date("md") == $festivalday[6] || date("md") == $festivalday[7] || date("md") == $festivalday[8] || date("md") == $festivalday[9] || date("md") == $festivalday[10]){
-  echo "<p class='festival'>今 天 是 ".$festival[date("md")]."</p>";
-}else{
-if(date('w')==0 || date('w')==6){
-  echo "<p class='f1'>今 天 是 平 平 凡 凡 的 假 日 !</p>";
-}else{
-  echo "<p class='f2'>今 天 是 平 平 凡 凡 的 一 天 !</p>";
-}
-}
+
 //名言陣列
 $words=["你不一定要很厲害，才能開始；但你要開始，才能很厲害。","記住你的價值，它不因外觀的不雅而貶值，是金子總有發光的一天。",
         "沒有退路時，潛能就發揮出來了。","永不言敗，是成功者的最佳品格。","如果你向神求助，說明你相信神的能力；如果神沒有幫助你，說明神相信你的能力。",
@@ -600,30 +529,22 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
 <!-- 萬年曆查詢 -->
 <form action="index.php" method="get">
   <h1 style="color:red;text-align:center; font-size:50px;margin-top:50px;text-shadow:5px 5px 5px black;">萬年曆查詢</h1>
-  <?php
-   $error="";
-  if(empty($year) || !is_numeric($year)){//年份欄位內若為空值及非純數字則提醒錯誤
-    $error="輸入格式錯誤，請重新輸入!!";
-    echo "<script>alert('輸入格式錯誤，請重新輸入!!');</script>";
-    echo "<h3 style='color:yellow;text-align:center;text-shadow:5px 5px 5px black;'>".$error."</h3>";
-    }
-  ?>
   <div class="text">
-    年份: <input type="text" name="year" style="font-size: 30px;width:200px;text-shadow:3px 3px 5px black;" value="查詢年份">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    月份: <select name="month" id="" style="font-size: 30px;text-shadow:3px 3px 5px black;">
-      <option value="<?=$month=date('n');?>"><?=$month=date('n');?></option> <!-- 月分預設值為當前月分 -->
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="12">12</option>
+    年份: <input type="number" name="year" placeholder="<?=$year?>" min="-10000" max="10000" id="" style="font-size: 30px;width:200px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    月份: <select name="month" id="" style="font-size: 30px;">
+      <!-- 年月份預設值為當前年月份，若已查詢或點擊按鈕則會保留當下的資料 -->
+      <option value="1" <?=($month=="1" )?'selected':'';?>>1</option>
+      <option value="2" <?=($month=="2" )?'selected':'';?>>2</option>
+      <option value="3" <?=($month=="3" )?'selected':'';?>>3</option>
+      <option value="4" <?=($month=="4" )?'selected':'';?>>4</option>
+      <option value="5" <?=($month=="5" )?'selected':'';?>>5</option>
+      <option value="6" <?=($month=="6" )?'selected':'';?>>6</option>
+      <option value="7" <?=($month=="7" )?'selected':'';?>>7</option>
+      <option value="8" <?=($month=="8" )?'selected':'';?>>8</option>
+      <option value="9" <?=($month=="9" )?'selected':'';?>>9</option>
+      <option value="10" <?=($month=="10")?'selected':'';?>>10</option>
+      <option value="11" <?=($month=="11")?'selected':'';?>>11</option>
+      <option value="12" <?=($month=="12")?'selected':'';?>>12</option>
     </select>
   </div>
   <div class="btn">
@@ -634,21 +555,15 @@ echo "<marquee style='font-family:Microsoft JhengHei;color:darkgreen;font-size:2
 </form>
 </div>
 <section class="table">
-<?php
-    if(empty($_GET['year']) || !is_numeric($year) || !is_numeric($_GET['year'])){//年份欄位內若為空值及非純數字則錯誤
-      echo "<p class='header3'>請在年份欄位內輸入純數字!<span>※非數字或是空白則為錯誤!</span>輸入正確即可檢視月曆~</p>"; 
-?>
-      <video autoplay muted loop id="myVideo2"> <!-- 置入貓的影片 -->
-      <source src="./resource/cat.mp4" type="video/mp4">
-      </video>
-<?php    
-      }else{//年份欄位內若為純數字則印出該年月的月曆 
-?>
+  <?php
+    $_GET['year']=isset($_GET['year'])?$_GET['year']:$year;//收到年月的資料為空，則預設為當前年月資料
+    $_GET['month']=isset($_GET['month'])?$_GET['month']:$month;
+  ?>
   <div class="bar"> <!-- 去年&上月連結 -->
     <p class="a1" style="text-align: left;"><a href="index.php?year=<?=($_GET['year']-1);?>&month=<?=$_GET['month'];?>">《《</a></p>
     <p class="a2" style="text-align: left;"><a href="index.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">←</a></p>
 <?php
-    echo "<p class='header0'>".floor($_GET['year'])." 年 ".$_GET['month']." 月份</p>"; //月曆標題
+    echo "<p class='header0'>".$_GET['year']." 年 ".$_GET['month']." 月份</p>"; //月曆標題
 ?>
     <!-- 明年&下月連結 -->
     <p class="a2" style="text-align: right;"><a href="index.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">→</a></p> 
@@ -677,7 +592,6 @@ foreach($datedays as $k => $day){ //印出日期
   
        }
    }
-  }
 ?>
 </section>
 </nav>
